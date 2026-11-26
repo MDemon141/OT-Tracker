@@ -90,7 +90,7 @@ if(b-a>365){var lo=leapOff(a);if(off>=lo)off++}return jd2d(nmDay(k+off)+ld-1)}
 // t: s = dương, l = âm; c: off/lunar/memo/intl
 var H=[['Tết Dương lịch','s',1,1,'off'],['Tết Nguyên đán','l',1,1,'off'],['Rằm tháng Giêng','l',15,1,'lunar'],['Giỗ Tổ Hùng Vương','l',10,3,'off'],
 ['Giải phóng miền Nam','s',30,4,'off'],['Quốc tế Lao động','s',1,5,'off'],['Tết Đoan Ngọ','l',5,5,'lunar'],['Vu Lan','l',15,7,'lunar'],['Quốc khánh','s',2,9,'off'],
-['Trung thu','l',15,8,'lunar'],['Ông Táo chầu trời','l',23,12,'lunar'],['Quốc tế Phụ nữ','s',8,3,'memo'],['Ngày Phụ nữ Việt Nam','s',20,10,'memo'],
+['Trung thu','l',15,8,'lunar'],['Ông Táo về trời','l',23,12,'lunar'],['Quốc tế Phụ nữ','s',8,3,'memo'],['Ngày Phụ nữ Việt Nam','s',20,10,'memo'],
 ['Ngày Nhà giáo Việt Nam','s',20,11,'memo'],['Ngày Văn hoá Việt Nam','s',24,11,'memo'],['Valentine','s',14,2,'intl'],['Giáng sinh','s',25,12,'intl']];
 var CN={off:'Nghỉ lễ',lunar:'Âm lịch',memo:'Kỷ niệm',intl:'Quốc tế'};
 function key(y,m,d){return y+'-'+(m<10?'0':'')+m+'-'+(d<10?'0':'')+d}
