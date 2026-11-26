@@ -27,10 +27,10 @@ nav button{flex:1;background:none;box-shadow:none;border-radius:0;color:var(--mu
 .k svg{color:var(--c)}.k b{font-size:22px;font-weight:800;color:var(--ct)}.k.m b{font-size:28px}.k small{font-size:12px;color:var(--mu)}
 .k.g{--c:var(--g);--ct:var(--gt)}.k.b{--c:var(--b);--ct:var(--bt)}.k.o{--c:var(--o);--ct:var(--ot)}
 .pay{display:flex;justify-content:space-between;align-items:center}.pay b{font-size:20px;font-weight:800}.gt{color:var(--gt)}
-.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;touch-action:pan-y}.dow{text-align:center;color:var(--mu);font-size:12px;padding:4px 0}
-.d{min-height:66px;border-radius:14px;padding:3px 0;display:flex;flex-direction:column;align-items:center;position:relative;background:none;box-shadow:none}.d.o{visibility:hidden}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px 4px;touch-action:pan-y}.dow{text-align:center;color:var(--mu);font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px 0 6px}.dow.we{color:var(--red)}
+.d{min-height:66px;border-radius:14px;padding:5px 0 4px;display:flex;flex-direction:column;align-items:center;position:relative;background:color-mix(in srgb,var(--bg) 55%,var(--card));box-shadow:none}.d.o{visibility:hidden}
 .d .s{font-size:16px;font-weight:700;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%}.d .l{font-size:10px;line-height:13px;color:var(--mu)}
-.d.t .s{background:var(--ac);color:#fff}.d.sel{box-shadow:inset 0 0 0 2px var(--ac)}.d.hl .s{color:var(--red)}.d.t.hl .s{color:#fff}
+.d.t .s{background:var(--ac);color:#fff;box-shadow:0 4px 10px color-mix(in srgb,var(--ac) 45%,transparent)}.d[class*=" c-"]{background:color-mix(in srgb,var(--c) 11%,var(--card))}.d.ot{background:color-mix(in srgb,var(--b) 11%,var(--card))}.d.ot2{background:color-mix(in srgb,var(--o) 12%,var(--card))}.d .l.f{color:var(--ac);font-weight:700}.chip2{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:6px 10px;border-radius:999px;background:color-mix(in srgb,var(--c) 12%,var(--card));margin:0 6px 6px 0}.chip2 i{width:6px;height:6px;border-radius:50%;background:var(--c)}.lg{display:flex;gap:14px;justify-content:center;font-size:11px;color:var(--mu);margin:-4px 0 12px}.lg i{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:5px}.d.sel{box-shadow:inset 0 0 0 2px var(--ac)}.d.hl .s{color:var(--red)}.d.t.hl .s{color:#fff}
 .dot{position:absolute;top:4px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--c)}
 .bd{margin-top:1px;line-height:14px;font-size:10px;font-weight:700;background:color-mix(in srgb,var(--b) 14%,var(--card));color:var(--bt);border-radius:8px;padding:0 5px}.bd.b2{background:color-mix(in srgb,var(--o) 14%,var(--card));color:var(--ot)}
 .c-off{--c:var(--red)}.c-lunar{--c:var(--yel)}.c-memo{--c:var(--blu)}.c-intl{--c:var(--pur)}
@@ -120,12 +120,14 @@ h+='<div class="sum"><div class="k g m">'+svg(IC.clk)+'<b>'+fmt(s.tot)+'</b><sma
 h+='<div class="card pay"><div><div class="mu">Công trong tháng</div><b>'+pp.w+' công</b>'+(ST.lcb?'<div class="mu">Lương 1h: '+money(pp.h)+'</div>':'')+'</div><div style="text-align:right"><div class="mu">Lương OT</div><b class="gt">'+(ST.lcb?money(pp.p):'—')+'</b></div></div>';
 if(!ST.lcb)h+='<div class="mu" style="margin:-4px 4px 10px">Nhập lương cơ bản trong Cài đặt để tính tiền OT.</div>';
 h+='<div class="card an" style="--dx:'+dir*24+'px"><div class="grid" id="g">';
-var days=ST.ws==1?['T2','T3','T4','T5','T6','T7','CN']:['CN','T2','T3','T4','T5','T6','T7'];days.forEach(function(d){h+='<div class="dow">'+d+'</div>'});
+var days=ST.ws==1?['T2','T3','T4','T5','T6','T7','CN']:['CN','T2','T3','T4','T5','T6','T7'];days.forEach(function(d){h+='<div class="dow'+(d=='CN'?' we':'')+'">'+d+'</div>'});
 for(var i=0;i<off;i++)h+='<div class="d o"></div>';
-for(var d=1;d<=dim;d++){var k=key(vy,vm,d),w=new Date(vy,vm-1,d).getDay(),hs=hm[k],o=OT[k],t=(o?(o.h15||0)+(o.h2||0):0),lu='';
-if(ST.lunar){var l=s2l(d,vm,vy);lu=l[0]==1?'1/'+l[1]:l[0]}
-h+='<button class="d'+(k==td?' t':'')+(k==sel?' sel':'')+((w==0||hs)?' hl':'')+(hs?' c-'+hs[0].c:'')+'" aria-label="Ngày '+d+'" onclick="openDay(\''+k+'\')"><span class="s">'+d+'</span><span class="l">'+lu+'</span>'+(hs?'<i class="dot"></i>':'')+(t?'<span class="bd'+(o.h2?' b2':'')+'">'+fmt(t)+'h</span>':'')+'</button>'}
-h+='</div></div>';
+for(var d=1;d<=dim;d++){var k=key(vy,vm,d),w=new Date(vy,vm-1,d).getDay(),hs=hm[k],o=OT[k],t=(o?(o.h15||0)+(o.h2||0):0),lu='',lf=0;
+if(ST.lunar){var l=s2l(d,vm,vy);lf=l[0]==1;lu=lf?'1/'+l[1]:l[0]}
+h+='<button class="d'+(k==td?' t':'')+(k==sel?' sel':'')+((w==0||hs)?' hl':'')+(hs?' c-'+hs[0].c:'')+(t?(o.h2?' ot2':' ot'):'')+'" aria-label="Ngày '+d+'" onclick="openDay(\''+k+'\')"><span class="s">'+d+'</span><span class="l'+(lf?' f':'')+'">'+lu+'</span>'+(hs?'<i class="dot"></i>':'')+(t?'<span class="bd'+(o.h2?' b2':'')+'">'+fmt(t)+'h</span>':'')+'</button>'}
+h+='</div></div><div class="lg"><span><i style="background:var(--red)"></i>Ngày lễ</span><span><i style="background:var(--b)"></i>OT x'+ST.f1+'</span><span><i style="background:var(--o)"></i>OT x'+ST.f2+'</span></div>';
+var ml=[],pf=vy+'-'+(vm<10?'0':'')+vm+'-';Object.keys(hm).sort().forEach(function(k){if(k.indexOf(pf)==0)hm[k].forEach(function(x){ml.push('<span class="chip2 c-'+x.c+'"><i></i>'+x.d+'/'+x.m+' · '+x.n+'</span>')})});
+if(ml.length)h+='<div class="card"><div class="mu" style="margin-bottom:10px">Ngày lễ trong tháng</div>'+ml.join('')+'</div>';
 if(!s.tot)h+='<div class="card mu" style="text-align:center">Chưa có OT tháng này<br>Bấm vào một ngày để thêm.</div>';
 return h}
 function nav(n){dir=n;vm+=n;if(vm>12){vm=1;vy++}if(vm<1){vm=12;vy--}render()}
