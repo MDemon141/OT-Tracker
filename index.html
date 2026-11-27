@@ -45,7 +45,8 @@ nav button{flex:1;background:none;box-shadow:none;border-radius:0;color:var(--mu
 #sheet>div::before{content:"";display:block;width:40px;height:5px;border-radius:3px;background:color-mix(in srgb,var(--mu) 40%,transparent);margin:-10px auto 14px}@keyframes up{from{transform:translateY(100%)}}
 .seg{display:flex;gap:4px;margin:12px 0;background:var(--bg);padding:4px;border-radius:16px}.seg button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;background:none;box-shadow:none}.seg .on{background:var(--card);box-shadow:0 2px 8px #1018281a;font-weight:700;color:var(--ac)}
 .step{display:flex;align-items:center;justify-content:center;gap:16px;margin:8px 0}.step button{width:56px;font-size:24px;border-radius:50%}.step b{font-size:32px;font-weight:800;min-width:96px;text-align:center}
-.q{display:flex;gap:8px}.q button{flex:1;padding:0 8px;border-radius:999px;background:var(--bg)}.pri{background:var(--ac);color:#fff}.full{width:100%;margin-top:12px}.del{background:none;box-shadow:none;color:var(--red);width:100%}
+.step input{width:96px;text-align:center;font-size:28px;font-weight:800;padding:4px 8px;border-radius:14px}
+.q{display:flex;gap:8px}.q button{flex:1;border-radius:999px;background:var(--bg);padding:0 8px}.pri{background:var(--ac);color:#fff}.full{width:100%;margin-top:12px}.del{background:none;box-shadow:none;color:var(--red);width:100%}
 table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:6px 4px;text-align:right;border-bottom:1px solid var(--bd)}td:first-child,th:first-child{text-align:left}
 .chart{display:flex;align-items:flex-end;gap:6px;height:120px;margin:8px 0}.chart div{flex:1;background:var(--g);border-radius:8px 8px 3px 3px;min-height:3px;cursor:pointer}
 label.sw{display:flex;justify-content:space-between;align-items:center;margin:10px 0;gap:10px}label.sw input{width:auto}textarea{min-height:70px}.mu{color:var(--mu);font-size:12px}
@@ -73,7 +74,8 @@ label.sw{display:flex;justify-content:space-between;align-items:center;margin:10
 // ===== Lưu trữ (localStorage, có try/catch; fallback bộ nhớ tạm) =====
 var mem={};function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return mem[k]!==undefined?mem[k]:d}}
 function sv(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-var OT=ld('ot',{}),PY=ld('py',{}),ST=Object.assign({f1:1.5,f2:2,lunar:true,ws:1,x3:3,meal:650,mealEat:2,lodge:500,travel:500,att:500,std:26,div:26,bhBase:1000,rBhxh:10.5,rUnion:0.5},ld('st',{}));
+var OT=ld('ot',{}),PY=ld('py',{}),ST=Object.assign({f1:1.5,f2:2,lunar:true,ws:1,x3:3,meal:650,mealEat:2,lodge:500,travel:500,att:500,std:26,div:26,bhBase:1000,rBhxh:10.5,rUnion:0.5,def:{}},ld('st',{}));
+if(!ST.def)ST.def={};
 var INT=Math.floor,TZ=7,PI=Math.PI;
 
 // ===== Thuật toán âm lịch Việt Nam (Hồ Ngọc Đức), múi giờ UTC+7 =====
@@ -127,11 +129,11 @@ function toast(t){var e=document.getElementById('toast');e.textContent=t;e.class
 function render(keep){var m=document.getElementById('m'),sc=m.scrollTop;m.innerHTML=[cal,cd,payroll,stats,sett][tab]();
 document.getElementById('nav').innerHTML=[['Lịch',IC.cal],['Đếm ngược',IC.tm],['Lương',IC.pay],['Thống kê',IC.ch],['Cài đặt',IC.gr]].map(function(s,i){return '<button class="'+(i==tab?'on':'')+'" aria-label="'+s[0]+'" onclick="tab='+i+';render(0)">'+svg(s[1],i==tab)+s[0]+'</button>'}).join('');dir=0;bind();m.scrollTop=keep?sc:0}
 
-function cal(){var s=mon(vy,vm),pp=pay(vy,vm),hm=holMap(vy);if(vm==1)Object.assign(hm,holMap(vy-1));var first=new Date(vy,vm-1,1).getDay(),off=(first-ST.ws+7)%7,dim=new Date(vy,vm,0).getDate(),td=key(T.getFullYear(),T.getMonth()+1,T.getDate()),L=s2l(15,vm,vy);
+function cal(){var s=mon(vy,vm),pp=pay(vy,vm),sl=slip(vy,vm),hm=holMap(vy);if(vm==1)Object.assign(hm,holMap(vy-1));var first=new Date(vy,vm-1,1).getDay(),off=(first-ST.ws+7)%7,dim=new Date(vy,vm,0).getDate(),td=key(T.getFullYear(),T.getMonth()+1,T.getDate()),L=s2l(15,vm,vy);
 var h='<div class="top"><div><h1>Tháng '+vm+', '+vy+'</h1><div class="mu">Âm lịch: tháng '+L[1]+' '+CAN[(L[2]+6)%10]+' '+CHI[(L[2]+8)%12]+'</div></div><div class="nv"><button class="ic" aria-label="Tháng trước" onclick="nav(-1)">‹</button><button class="pill" onclick="vy=T.getFullYear();vm=T.getMonth()+1;render()">Hôm nay</button><button class="ic" aria-label="Tháng sau" onclick="nav(1)">›</button></div></div>';
 h+='<div class="sum"><div class="k g m">'+svg(IC.clk)+'<b>'+fmt(s.h15+s.h2)+'</b><small>Tổng giờ OT</small></div><div class="k b">'+svg(IC.clk)+'<b>'+fmt(s.h15)+'</b><small>OT x'+ST.f1+'</small></div><div class="k o">'+svg(IC.clk)+'<b>'+fmt(s.h2)+'</b><small>OT x'+ST.f2+'</small></div></div>';
-h+='<div class="card pay"><div><div class="mu">Công trong tháng</div><b>'+pp.w+' công</b>'+(pp.h?'<div class="mu">Lương 1h: '+money(pp.h)+'</div>':'')+'</div><div style="text-align:right"><div class="mu">Lương OT</div><b class="gt">'+(pp.h?money(pp.p):'—')+'</b></div></div>';
-if(!pp.h)h+='<div class="mu" style="margin:-4px 4px 10px">Nhập lương cơ bản ở tab Cài đặt để tính tiền OT.</div>';
+h+='<div class="card pay"><div><div class="mu">Công trong tháng</div><b>'+(sl.set?fmt(sl.days)+' / '+pp.w:pp.w)+' công</b>'+(pp.h?'<div class="mu">Lương 1h: '+money(pp.h)+'</div>':'')+'</div><div style="text-align:right"><div class="mu">Lương OT</div><b class="gt">'+(pp.h?money(pp.p):'—')+'</b></div></div>';
+if(!pp.h)h+='<div class="mu" style="margin:-4px 4px 10px">Nhập lương cơ bản ở tab Lương hoặc Thông tin mốc trong Cài đặt để tính tiền OT.</div>';
 h+='<div class="card an" style="--dx:'+dir*24+'px"><div class="grid" id="g">';
 var days=ST.ws==1?['T2','T3','T4','T5','T6','T7','CN']:['CN','T2','T3','T4','T5','T6','T7'];days.forEach(function(d){h+='<div class="dow'+(d=='CN'?' we':'')+'">'+d+'</div>'});
 for(var i=0;i<off;i++)h+='<div class="d o"></div>';
@@ -148,7 +150,7 @@ function nav(n){dir=n;vm+=n;if(vm>12){vm=1;vy++}if(vm<1){vm=12;vy--}render()}
 
 function suggest(k){var p=k.split('-').map(Number),w=new Date(p[0],p[1]-1,p[2]).getDay(),hm=holMap(p[0]);return(hm[k]&&hm[k].some(function(h){return h.c=='off'})||w==0)?'h2':'h15'}
 function openDay(k){sel=k;cur=k;var o=OT[k]||{};cur={k:k,h15:o.h15||0,h2:o.h2||0,note:o.note||''};seg=suggest(k);sheet()}
-function sheet(){var p=cur.k.split('-').map(Number),dow=new Date(p[0],p[1]-1,p[2]).getDay(),w=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'][dow],L=s2l(p[2],p[1],p[0]),hs=(holMap(p[0])[cur.k]||[]).map(function(h){return h.n}).join(', '),qs=dow==0?[1,2,3,4,8]:[1,2,3,4];
+function sheet(){var p=cur.k.split('-').map(Number),dw=new Date(p[0],p[1]-1,p[2]).getDay(),w=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'][dw],L=s2l(p[2],p[1],p[0]),hs=(holMap(p[0])[cur.k]||[]).map(function(h){return h.n}).join(', '),qs=dw==0?[1,2,3,4,8]:[1,2,3,4];
 var x='<div><h3 style="margin:0">'+w+', '+p[2]+'/'+p[1]+'/'+p[0]+'</h3><div class="mu">Âm lịch: '+L[0]+'/'+L[1]+(L[3]?' (nhuận)':'')+(hs?' · 🎉 '+hs:'')+'</div>'
 +'<div class="seg"><button class="'+(seg=='h15'?'on':'')+'" onclick="seg=\'h15\';sheet()">OT x'+ST.f1+'<b>'+fmt(cur.h15)+'h</b></button><button class="'+(seg=='h2'?'on':'')+'" onclick="seg=\'h2\';sheet()">OT x'+ST.f2+'<b>'+fmt(cur.h2)+'h</b></button></div>'
 +'<div class="step"><button onclick="adj(-0.5)">−</button><b>'+fmt(cur[seg])+' h</b><button onclick="adj(0.5)">+</button></div>'
@@ -180,10 +182,9 @@ h+='</div><table><tr><th>Tháng</th><th>x'+ST.f1+'</th><th>x'+ST.f2+'</th><th>Qu
 h+='<div class="card"><div class="row"><button style="flex:1" onclick="csv()">Xuất CSV</button><button style="flex:1" onclick="bk()">Sao lưu JSON</button><button style="flex:1" onclick="rs()">Khôi phục</button></div><textarea id="io" placeholder="CSV / JSON hiển thị ở đây — sao chép để lưu; dán JSON rồi bấm Khôi phục"></textarea><button onclick="var e=document.getElementById(\'io\');e.select();try{document.execCommand(\'copy\')}catch(x){}" style="margin-top:8px;width:100%">Sao chép</button></div>';return h}
 function csv(){var r=['Ngay,Gio x'+ST.f1+',Gio x'+ST.f2+',Quy doi,Ghi chu'];Object.keys(OT).sort().forEach(function(k){var o=OT[k];r.push([k,o.h15||0,o.h2||0,(o.h15||0)*ST.f1+(o.h2||0)*ST.f2,'"'+(o.note||'').replace(/"/g,'""')+'"'].join(','))});document.getElementById('io').value=r.join('\n')}
 function bk(){document.getElementById('io').value=JSON.stringify({ot:OT,st:ST,py:PY})}
-function rs(){try{var d=JSON.parse(document.getElementById('io').value);if(d.ot){OT=d.ot;sv('ot',OT)}if(d.st){ST=Object.assign(ST,d.st);sv('st',ST)}if(d.py){PY=d.py;sv('py',PY)}render()}catch(e){alert('JSON không hợp lệ')}}
+function rs(){try{var d=JSON.parse(document.getElementById('io').value);if(d.ot){OT=d.ot;sv('ot',OT)}if(d.st){ST=Object.assign(ST,d.st);if(!ST.def)ST.def={};sv('st',ST)}if(d.py){PY=d.py;sv('py',PY)}render()}catch(e){alert('JSON không hợp lệ')}}
 
-function sett(){return '<div class="card"><div class="top" style="margin-bottom:8px"><div><div style="font-weight:700">Thông số lương tháng '+vm+'/'+vy+'</div><div class="mu">Lương cơ bản, thưởng, phụ cấp con nhỏ theo từng tháng.</div></div><div class="nv"><button class="ic" aria-label="Tháng trước" onclick="nav(-1)">‹</button><button class="ic" aria-label="Tháng sau" onclick="nav(1)">›</button></div></div><button class="pri full" style="margin-top:4px" onclick="openInput()">✎ Nhập thông số</button></div>'
-+'<div class="card"><div class="mu">Lương 1h = LCB ÷ công chia OT ÷ 8 (cài đặt ở khung Lương &amp; phụ cấp bên dưới).</div><label class="sw">Hệ số OT thường<input id="f1" type="number" step="0.1" value="'+ST.f1+'" style="width:90px"></label><label class="sw">Hệ số OT ngày nghỉ/lễ<input id="f2" type="number" step="0.1" value="'+ST.f2+'" style="width:90px"></label><div class="mu">Đổi thành 3 nếu công ty tính lễ x3. Gợi ý khi nhập: ngày lễ nghỉ và Chủ nhật → hệ số thứ hai, ngày thường → hệ số thứ nhất.</div>'
+function sett(){return '<div class="card"><div class="mu">Lương cơ bản nhập theo từng tháng ở tab <b>Lương</b> hoặc lưu sẵn ở mục <b>Thông tin mốc</b> bên dưới. Lương 1h = LCB ÷ công chia OT ÷ 8.</div><label class="sw">Hệ số OT thường<input id="f1" type="number" step="0.1" value="'+ST.f1+'" style="width:90px"></label><label class="sw">Hệ số OT ngày nghỉ/lễ<input id="f2" type="number" step="0.1" value="'+ST.f2+'" style="width:90px"></label><div class="mu">Đổi thành 3 nếu công ty tính lễ x3. Gợi ý khi nhập: ngày lễ nghỉ và Chủ nhật → hệ số thứ hai, ngày thường → hệ số thứ nhất.</div>'
 +'<label class="sw">Hiển thị âm lịch<input id="lu" type="checkbox"'+(ST.lunar?' checked':'')+'></label><label class="sw">Tuần bắt đầu từ<select id="ws" style="width:110px"><option value="1"'+(ST.ws==1?' selected':'')+'>Thứ 2</option><option value="0"'+(ST.ws==0?' selected':'')+'>Chủ nhật</option></select></label>'
 +'<label class="sw">Chủ đề<select id="th" style="width:110px"><option value="">Theo hệ thống</option><option value="light"'+(ST.th=='light'?' selected':'')+'>Sáng</option><option value="dark"'+(ST.th=='dark'?' selected':'')+'>Tối</option></select></label></div>'+settPay()}
 
@@ -193,8 +194,9 @@ var m={lcb:function(v){ST.lcb=+v||0},f1:function(v){ST.f1=+v||1.5},f2:function(v
 for(var id in m)(function(id){var x=document.getElementById(id);if(x)x.onchange=function(){m[id](this.value);sv('st',ST)}})(id);
 if(e=document.getElementById('lu'))e.onchange=function(){ST.lunar=this.checked;sv('st',ST)};
 if(e=document.getElementById('aw'))e.onchange=function(){ST.autoW=this.checked;sv('st',ST);render()};
+IF.forEach(function(f){var x=document.getElementById('d_'+f[0]);if(x)x.onchange=function(){var v=num(this.value);ST.def=ST.def||{};if(v==null)delete ST.def[f[0]];else ST.def[f[0]]=v;sv('st',ST);toast('Đã lưu mốc')}});
 PF.forEach(function(p){var x=document.getElementById('s_'+p[0]);if(x)x.onchange=function(){var v=num(this.value);if(v==null||((p[0]=='std'||p[0]=='div')&&v<=0))v=PD[p[0]];ST[p[0]]=v;sv('st',ST);render(1)}});
-if(e=document.getElementById('std'))e.onchange=function(){var v=num(this.value),P=pyGet(vy,vm);if(v&&v>0)P.std=v;else delete P.std;sv('py',PY);render(1)};
+if(e=document.getElementById('days_in'))e.onchange=function(){var v=num(this.value);setDays(v==null?null:v,1)};
 if(e=document.getElementById('lun'))e.onchange=function(){pyGet(vy,vm).lunch=this.checked;sv('py',PY);render(1)};
 var g=document.getElementById('g');if(g){var sx=0;g.ontouchstart=function(ev){sx=ev.touches[0].clientX};g.ontouchend=function(ev){var dx=ev.changedTouches[0].clientX-sx;if(Math.abs(dx)>60)nav(dx<0?1:-1)}}}
 function theme(){if(ST.th)document.documentElement.setAttribute('data-theme',ST.th);else document.documentElement.removeAttribute('data-theme')}
@@ -205,7 +207,7 @@ function num(v){v=(''+v).replace(/\s/g,'').replace(',','.');if(v==='')return nul
 function ym(y,m){return y+'-'+(m<10?'0':'')+m}
 function pyGet(y,m){var k=ym(y,m);return PY[k]||(PY[k]={})}
 function cw(y,m){var w=0,dim=new Date(y,m,0).getDate();for(var d=1;d<=dim;d++)if(new Date(y,m-1,d).getDay()!=0)w++;return w}
-function lcbOf(y,m){for(var i=0;i<60;i++){var P=PY[ym(y,m)];if(P&&P.lcb!=null)return P.lcb;m--;if(m<1){m=12;y--}}return (ST.lcb||0)/1000}
+function lcbOf(y,m){for(var i=0;i<60;i++){var P=PY[ym(y,m)];if(P&&P.lcb!=null)return P.lcb;m--;if(m<1){m=12;y--}}return (ST.def&&ST.def.lcb!=null)?ST.def.lcb:((ST.lcb||0)/1000)}
 function fN(k){return Math.round(k*1000).toLocaleString('vi-VN')}
 function fK(k){return fN(k)+' đ'}
 var OVF=[['meal','Phụ cấp ăn ca'],['lodge','Phụ cấp nhà trọ'],['travel','Phụ cấp đi lại'],['att','Chuyên cần'],['perf','Thưởng hiệu suất'],['ot','Tiền tăng ca'],['bhxh','BHXH'],['union','Công đoàn']];
@@ -219,19 +221,18 @@ var gross=r(lcb+bonus+qual+senior+child+V.meal+V.lodge+V.travel+V.att+V.perf+V.o
 return{P:P,w:w,lcb:lcb,days:days,eat:eat,o:o,hr:hr,div:div,std:std,base:base,a:A,v:V,ov:ov,bonus:bonus,qual:qual,senior:senior,child:child,gross:gross,ded:ded,net:r(gross-ded),set:P.days!=null}}
 function ln(l,f,v,ov){return '<div class="ln"><div class="lf"><div>'+l+(ov?' <i class="ed">sửa tay</i>':'')+'</div>'+(f?'<small>'+f+'</small>':'')+'</div><b'+(v?'':' class="z"')+'>'+(v?fK(v):'–')+'</b></div>'}
 function sumr(l,v,c){return '<div class="ln sm '+(c||'')+'"><div class="lf"><div>'+l+'</div></div><b>'+fK(v)+'</b></div>'}
-function attCard(y,m){var s=slip(y,m),P=s.P,aw=cw(y,m);
-var h='<div class="card"><div class="mu" style="margin-bottom:2px">Chấm công tháng '+m+'/'+y+'</div><div class="step"><button aria-label="Giảm nửa ngày" onclick="setDays(-0.5)">−</button><b>'+fmt(s.days)+'</b><button aria-label="Tăng nửa ngày" onclick="setDays(0.5)">+</button></div>'
-+'<div class="mu" style="text-align:center;margin-bottom:8px">ngày đi làm / '+fmt(s.w)+' công chuẩn'+(s.set?'':' · chưa nhập, tạm tính đủ công')+'</div>'
+function attCard(y,m){var s=slip(y,m);
+var h='<div class="card"><div class="mu" style="margin-bottom:2px">Chấm công tháng '+m+'/'+y+'</div><div class="step"><button aria-label="Giảm nửa ngày" onclick="setDays(-0.5)">−</button><input id="days_in" type="text" inputmode="decimal" aria-label="Số ngày đi làm" value="'+fmt(s.days)+'"><button aria-label="Tăng nửa ngày" onclick="setDays(0.5)">+</button></div>'
++'<div class="mu" style="text-align:center;margin-bottom:8px">ngày đi làm / '+fmt(s.w)+' công chuẩn (T2–T7)'+(s.set?'':' · tạm tính đủ công')+'</div>'
 +'<div class="q"><button onclick="setDays(null)">Đủ công ('+fmt(s.w)+')</button>'+[24,25,26].map(function(n){return '<button onclick="setDays('+n+',1)">'+n+'</button>'}).join('')+'</div>'
-+'<label class="sw">Công chuẩn tháng (để trống = tự tính T2–T7: '+aw+')<input id="std" type="text" inputmode="decimal" value="'+(P.std||'')+'" placeholder="'+aw+'" style="width:80px;text-align:right"></label>'
 +'<label class="sw">Ăn trưa tại công ty<input id="lun" type="checkbox"'+(s.eat?' checked':'')+'></label>';
 if(s.lcb)h+='<button class="full" style="display:flex;justify-content:space-between;align-items:center;margin-top:4px" onclick="tab=2;render(1)"><span class="mu">Thực lĩnh tạm tính · xem phiếu lương ›</span><b class="gt">'+fK(s.net)+'</b></button>';
 return h+'</div>'}
 function setDays(n,abs){var P=pyGet(vy,vm);if(n===null)delete P.days;else{var d=abs?n:(P.days!=null?P.days:pay(vy,vm).w)+n;P.days=Math.max(0,Math.min(31,d))}sv('py',PY);render(1)}
 function payroll(){var s=slip(vy,vm),v=s.v,o=s.o,A=s.a,ov=s.ov;
 var h='<div class="top"><div><h1>Phiếu lương</h1><div class="mu">Tháng '+vm+'/'+vy+'</div></div><div class="nv"><button class="ic" aria-label="Tháng trước" onclick="nav(-1)">‹</button><button class="pill" onclick="vy=T.getFullYear();vm=T.getMonth()+1;render()">Hôm nay</button><button class="ic" aria-label="Tháng sau" onclick="nav(1)">›</button></div></div>';
-h+='<div class="row"><button style="flex:1" onclick="openOvr()">Sửa tổng</button></div>';
-if(!s.lcb)h+='<div class="card mu" style="text-align:center">Chưa có lương cơ bản. Vào mục <b>Cài đặt</b> → “Nhập thông số” để bắt đầu.</div>';
+h+='<div class="row"><button class="pri" style="flex:1" onclick="openInput()">✎ Nhập thông số</button><button style="flex:1" onclick="openOvr()">Sửa tổng</button></div>';
+if(!s.lcb)h+='<div class="card mu" style="text-align:center">Chưa có lương cơ bản. Bấm “Nhập thông số” để bắt đầu.</div>';
 h+='<div class="slip an" style="--dx:'+dir*24+'px"><div class="sh"><div class="t1">PHIẾU LƯƠNG</div><div class="t2">Tháng '+vm+' / '+vy+'</div><div class="inf"><div><small>Công chuẩn</small><b>'+fmt(s.w)+'</b></div><div><small>Đi làm</small><b>'+fmt(s.days)+'</b></div><div><small>Ăn trưa</small><b>'+(s.eat?'Có':'Không')+'</b></div><div><small>Giờ OT</small><b>'+fmt(o.h15+o.h2)+'</b></div></div></div>'
 +'<div class="sec">I. Lương &amp; thưởng</div>'
 +ln('Lương cơ bản','',s.lcb)+ln('Thưởng','',s.bonus)+ln('Thưởng chất lượng','',s.qual)+ln('Thưởng thâm niên','',s.senior)
@@ -256,15 +257,17 @@ function fld(id,l,val,ph){return '<label class="sw">'+l+'<input id="'+id+'" type
 var IF=[['lcb','Lương cơ bản'],['bonus','Thưởng'],['qual','Thưởng chất lượng'],['senior','Thưởng thâm niên'],['child','Phụ cấp con nhỏ']];
 function openInput(){var P=PY[ym(vy,vm)]||{},inh=lcbOf(vy,vm),x='<h3 style="margin:0">Thông số tháng '+vm+'/'+vy+'</h3><div class="mu" style="margin-bottom:6px">Nhập theo nghìn đồng: 500 = 500.000 đ. Các khoản còn lại (ăn ca, nhà trọ, BH…) chỉnh ở Cài đặt.</div>';
 IF.forEach(function(f){x+=fld('i_'+f[0],f[1],P[f[0]],f[0]=='lcb'?(inh||'vd 8000'):'0')});
-x+='<div class="mu">Lương cơ bản để trống sẽ lấy theo tháng gần nhất đã nhập.</div><button class="pri full" onclick="saveInput()">Lưu</button><div class="q" style="margin-top:8px"><button onclick="copyPrev()">Chép từ tháng trước</button><button onclick="closeS()">Đóng</button></div>';showSheet(x)}
+x+='<div class="mu">Lương cơ bản để trống sẽ lấy theo tháng gần nhất hoặc thông tin mốc đã nhập.</div><button class="pri full" onclick="saveInput()">Lưu</button><div class="q" style="margin-top:8px"><button onclick="copyDef()">Chép từ mốc cài đặt</button><button onclick="closeS()">Đóng</button></div>';showSheet(x)}
 function saveInput(){var P=pyGet(vy,vm);IF.forEach(function(f){var v=num(document.getElementById('i_'+f[0]).value);if(v==null)delete P[f[0]];else P[f[0]]=v});sv('py',PY);closeS();render(1);toast('Đã lưu')}
-function copyPrev(){var y=vy,m=vm-1;if(m<1){m=12;y--}var p=PY[ym(y,m)];if(!p){toast('Tháng trước chưa có dữ liệu');return}IF.forEach(function(f){var e=document.getElementById('i_'+f[0]);if(e&&p[f[0]]!=null)e.value=p[f[0]]});toast('Đã chép, bấm Lưu')}
+function copyDef(){var D=ST.def;if(!D||!Object.keys(D).length){toast('Chưa nhập thông tin mốc ở Cài đặt');return}IF.forEach(function(f){var e=document.getElementById('i_'+f[0]);if(e&&D[f[0]]!=null)e.value=D[f[0]]});toast('Đã chép từ mốc, bấm Lưu')}
 function openOvr(){var s=slip(vy,vm),O=s.P.ovr||{},x='<h3 style="margin:0">Sửa tổng tháng '+vm+'/'+vy+'</h3><div class="mu" style="margin-bottom:6px">Nhập tay để thay giá trị tự tính (nghìn đồng). Để trống = tự động; số mờ là giá trị tự tính.</div>';
 OVF.forEach(function(f){x+=fld('o_'+f[0],f[1],O[f[0]],Math.round(s.a[f[0]]*100)/100)});
 x+='<button class="pri full" onclick="saveOvr()">Lưu</button><div class="q" style="margin-top:8px"><button onclick="resetOvr()">Về tự động</button><button onclick="closeS()">Đóng</button></div>';showSheet(x)}
 function saveOvr(){var P=pyGet(vy,vm),O={},n=0;OVF.forEach(function(f){var v=num(document.getElementById('o_'+f[0]).value);if(v!=null){O[f[0]]=v;n++}});if(n)P.ovr=O;else delete P.ovr;sv('py',PY);closeS();render(1);toast('Đã lưu')}
 function resetOvr(){delete pyGet(vy,vm).ovr;sv('py',PY);render(1);toast('Đã về tự động')}
-function settPay(){var x='<div class="card"><div style="font-weight:700;margin-bottom:2px">Lương &amp; phụ cấp (dùng chung các tháng)</div><div class="mu">Nhập theo nghìn đồng: 650 = 650.000 đ.</div>';
+function settPay(){var D=ST.def||{},x='<div class="card"><div style="font-weight:700;margin-bottom:2px">Thông tin mốc (mặc định phiếu lương)</div><div class="mu">Nhập theo nghìn đồng: 500 = 500.000 đ. Dùng để sao chép nhanh ở mục Nhập thông số.</div>';
+IF.forEach(function(f){x+=fld('d_'+f[0],f[1],D[f[0]],f[0]=='lcb'?'vd 8000':'0')});
+x+='</div><div class="card"><div style="font-weight:700;margin-bottom:2px">Lương &amp; phụ cấp (dùng chung các tháng)</div><div class="mu">Nhập theo nghìn đồng: 650 = 650.000 đ.</div>';
 PF.forEach(function(p){x+=fld('s_'+p[0],p[1],ST[p[0]])});
 return x+'</div>'}
 
