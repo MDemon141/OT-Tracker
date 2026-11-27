@@ -109,7 +109,7 @@ function svg(p,f){return '<svg viewBox="0 0 24 24" width="22" height="22" fill="
 var IC={cal:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',tm:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/>',ch:'<path d="M5 20v-7M12 20V5M19 20v-10"/>',gr:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',clk:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'};
 function money(n){return Math.round(n).toLocaleString('vi-VN')+' đ'}
 // Số công = số ngày Thứ 2 → Thứ 7 trong tháng (loại Chủ nhật); lương 1h = LCB / số công / 8; tiền OT = tổng giờ quy đổi × lương 1h
-function pay(y,m){var w=0,dim=new Date(y,m,0).getDate();for(var d=1;d<=dim;d++)if(new Date(y,m-1,d).getDay()!=0)w++;var h=ST.lcb?ST.lcb/w/8:0;return{w:w,h:h,p:mon(y,m).tot*h}}
+function pay(y,m){var w=0,dim=new Date(y,m,0).getDate();for(var d=1;d<=dim;d++)if(new Date(y,m-1,d).getDay()!=0)w++;if(ST.autoW===false)w=26;var h=ST.lcb?ST.lcb/w/8:0;return{w:w,h:h,p:mon(y,m).tot*h}}
 function toast(t){var e=document.getElementById('toast');e.textContent=t;e.className='on';setTimeout(function(){e.className=''},1800)}
 function render(){var m=document.getElementById('m');m.innerHTML=[cal,cd,stats,sett][tab]();
 document.getElementById('nav').innerHTML=[['Lịch',IC.cal],['Đếm ngược',IC.tm],['Thống kê',IC.ch],['Cài đặt',IC.gr]].map(function(s,i){return '<button class="'+(i==tab?'on':'')+'" aria-label="'+s[0]+'" onclick="tab='+i+';render()">'+svg(s[1],i==tab)+s[0]+'</button>'}).join('');dir=0;bind()}
@@ -168,7 +168,7 @@ function csv(){var r=['Ngay,Gio x'+ST.f1+',Gio x'+ST.f2+',Quy doi,Ghi chu'];Obje
 function bk(){document.getElementById('io').value=JSON.stringify({ot:OT,st:ST})}
 function rs(){try{var d=JSON.parse(document.getElementById('io').value);if(d.ot){OT=d.ot;sv('ot',OT)}if(d.st){ST=Object.assign(ST,d.st);sv('st',ST)}render()}catch(e){alert('JSON không hợp lệ')}}
 
-function sett(){return '<div class="card"><label class="sw">Lương cơ bản (đ/tháng)<input id="lcb" type="number" inputmode="numeric" step="100000" value="'+(ST.lcb||'')+'" style="width:150px"></label><div class="mu">Số công = số ngày Thứ 2–Thứ 7 trong tháng. Lương 1h = LCB ÷ số công ÷ 8.</div><label class="sw">Hệ số OT thường<input id="f1" type="number" step="0.1" value="'+ST.f1+'" style="width:90px"></label><label class="sw">Hệ số OT ngày nghỉ/lễ<input id="f2" type="number" step="0.1" value="'+ST.f2+'" style="width:90px"></label><div class="mu">Đổi thành 3 nếu công ty tính lễ x3. Gợi ý khi nhập: ngày lễ nghỉ và Chủ nhật → hệ số thứ hai, ngày thường → hệ số thứ nhất.</div>'
+function sett(){return '<div class="card"><label class="sw">Lương cơ bản (đ/tháng)<input id="lcb" type="number" inputmode="numeric" step="100000" value="'+(ST.lcb||'')+'" style="width:150px"></label><label class="sw">Tự tính số công theo tháng<input id="aw" type="checkbox"'+(ST.autoW!==false?' checked':'')+'></label><div class="mu">'+(ST.autoW!==false?'Bật: số công = số ngày Thứ 2–Thứ 7 của từng tháng.':'Tắt: cố định 26 công mỗi tháng.')+' Lương 1h = LCB ÷ số công ÷ 8.</div><label class="sw">Hệ số OT thường<input id="f1" type="number" step="0.1" value="'+ST.f1+'" style="width:90px"></label><label class="sw">Hệ số OT ngày nghỉ/lễ<input id="f2" type="number" step="0.1" value="'+ST.f2+'" style="width:90px"></label><div class="mu">Đổi thành 3 nếu công ty tính lễ x3. Gợi ý khi nhập: ngày lễ nghỉ và Chủ nhật → hệ số thứ hai, ngày thường → hệ số thứ nhất.</div>'
 +'<label class="sw">Hiển thị âm lịch<input id="lu" type="checkbox"'+(ST.lunar?' checked':'')+'></label><label class="sw">Tuần bắt đầu từ<select id="ws" style="width:110px"><option value="1"'+(ST.ws==1?' selected':'')+'>Thứ 2</option><option value="0"'+(ST.ws==0?' selected':'')+'>Chủ nhật</option></select></label>'
 +'<label class="sw">Chủ đề<select id="th" style="width:110px"><option value="">Theo hệ thống</option><option value="light"'+(ST.th=='light'?' selected':'')+'>Sáng</option><option value="dark"'+(ST.th=='dark'?' selected':'')+'>Tối</option></select></label></div>'}
 
@@ -177,9 +177,11 @@ if(e=document.getElementById('rg'))e.onchange=function(){rng=+this.value;render(
 var m={lcb:function(v){ST.lcb=+v||0},f1:function(v){ST.f1=+v||1.5},f2:function(v){ST.f2=+v||2},ws:function(v){ST.ws=+v},th:function(v){ST.th=v;theme()}};
 for(var id in m)(function(id){var x=document.getElementById(id);if(x)x.onchange=function(){m[id](this.value);sv('st',ST)}})(id);
 if(e=document.getElementById('lu'))e.onchange=function(){ST.lunar=this.checked;sv('st',ST)};
+if(e=document.getElementById('aw'))e.onchange=function(){ST.autoW=this.checked;sv('st',ST);render()};
 var g=document.getElementById('g');if(g){var sx=0;g.ontouchstart=function(ev){sx=ev.touches[0].clientX};g.ontouchend=function(ev){var dx=ev.changedTouches[0].clientX-sx;if(Math.abs(dx)>60)nav(dx<0?1:-1)}}}
 function theme(){if(ST.th)document.documentElement.setAttribute('data-theme',ST.th);else document.documentElement.removeAttribute('data-theme')}
 document.getElementById('sheet').onclick=function(e){if(e.target==this)closeS()};
 theme();render();
 if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
 </script></body></html>
+>
