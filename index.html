@@ -31,7 +31,7 @@ nav button{flex:1;background:none;box-shadow:none;border-radius:0;color:var(--mu
 .d{min-height:66px;border-radius:14px;padding:5px 0 4px;display:flex;flex-direction:column;align-items:center;position:relative;background:color-mix(in srgb,var(--bg) 55%,var(--card));box-shadow:none}.d.o{visibility:hidden}
 .d .s{font-size:16px;font-weight:700;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%}.d .l{font-size:10px;line-height:13px;color:var(--mu)}
 .d.t .s{background:var(--ac);color:#fff;box-shadow:0 4px 10px color-mix(in srgb,var(--ac) 45%,transparent)}.d[class*=" c-"]{background:color-mix(in srgb,var(--c) 11%,var(--card))}.d.ot{background:color-mix(in srgb,var(--b) 11%,var(--card))}.d.ot2{background:color-mix(in srgb,var(--o) 12%,var(--card))}.d .l.f{color:var(--ac);font-weight:700}.chip2{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:6px 10px;border-radius:999px;background:color-mix(in srgb,var(--c) 12%,var(--card));margin:0 6px 6px 0}.chip2 i{width:6px;height:6px;border-radius:50%;background:var(--c)}.lg{display:flex;gap:14px;justify-content:center;font-size:11px;color:var(--mu);margin:-4px 0 12px}.lg i{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:5px}.d.sel{box-shadow:inset 0 0 0 2px var(--ac)}.d.hl .s{color:var(--red)}.d.t.hl .s{color:#fff}
-.dot{position:absolute;top:4px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--c)}
+.dot{position:absolute;top:4px;right:6pxchầu;width:6px;height:6px;border-radius:50%;background:var(--c)}
 .bd{margin-top:1px;line-height:14px;font-size:10px;font-weight:700;background:color-mix(in srgb,var(--b) 14%,var(--card));color:var(--bt);border-radius:8px;padding:0 5px}.bd.b2{background:color-mix(in srgb,var(--o) 14%,var(--card));color:var(--ot)}
 .c-off{--c:var(--red)}.c-lunar{--c:var(--yel)}.c-memo{--c:var(--blu)}.c-intl{--c:var(--pur)}
 .hol{display:flex;flex-wrap:wrap;align-items:center;gap:6px;border-left:6px solid var(--c)}.hol .lf{flex:1}.hol .n{font-weight:600}
@@ -116,7 +116,7 @@ document.getElementById('nav').innerHTML=[['Lịch',IC.cal],['Đếm ngược',I
 
 function cal(){var s=mon(vy,vm),pp=pay(vy,vm),hm=holMap(vy);if(vm==1)Object.assign(hm,holMap(vy-1));var first=new Date(vy,vm-1,1).getDay(),off=(first-ST.ws+7)%7,dim=new Date(vy,vm,0).getDate(),td=key(T.getFullYear(),T.getMonth()+1,T.getDate()),L=s2l(15,vm,vy);
 var h='<div class="top"><div><h1>Tháng '+vm+', '+vy+'</h1><div class="mu">Âm lịch: tháng '+L[1]+' '+CAN[(L[2]+6)%10]+' '+CHI[(L[2]+8)%12]+'</div></div><div class="nv"><button class="ic" aria-label="Tháng trước" onclick="nav(-1)">‹</button><button class="pill" onclick="vy=T.getFullYear();vm=T.getMonth()+1;render()">Hôm nay</button><button class="ic" aria-label="Tháng sau" onclick="nav(1)">›</button></div></div>';
-h+='<div class="sum"><div class="k g m">'+svg(IC.clk)+'<b>'+fmt(s.tot)+'</b><small>Quy đổi (giờ)</small></div><div class="k b">'+svg(IC.clk)+'<b>'+fmt(s.h15)+'</b><small>OT x'+ST.f1+'</small></div><div class="k o">'+svg(IC.clk)+'<b>'+fmt(s.h2)+'</b><small>OT x'+ST.f2+'</small></div></div>';
+h+='<div class="sum"><div class="k g m">'+svg(IC.clk)+'<b>'+fmt(s.h15+s.h2)+'</b><small>Tổng giờ OT</small></div><div class="k b">'+svg(IC.clk)+'<b>'+fmt(s.h15)+'</b><small>OT x'+ST.f1+'</small></div><div class="k o">'+svg(IC.clk)+'<b>'+fmt(s.h2)+'</b><small>OT x'+ST.f2+'</small></div></div>';
 h+='<div class="card pay"><div><div class="mu">Công trong tháng</div><b>'+pp.w+' công</b>'+(ST.lcb?'<div class="mu">Lương 1h: '+money(pp.h)+'</div>':'')+'</div><div style="text-align:right"><div class="mu">Lương OT</div><b class="gt">'+(ST.lcb?money(pp.p):'—')+'</b></div></div>';
 if(!ST.lcb)h+='<div class="mu" style="margin:-4px 4px 10px">Nhập lương cơ bản trong Cài đặt để tính tiền OT.</div>';
 h+='<div class="card an" style="--dx:'+dir*24+'px"><div class="grid" id="g">';
@@ -184,4 +184,3 @@ document.getElementById('sheet').onclick=function(e){if(e.target==this)closeS()}
 theme();render();
 if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
 </script></body></html>
->
