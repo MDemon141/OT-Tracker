@@ -31,7 +31,7 @@ nav button{flex:1;background:none;box-shadow:none;border-radius:0;color:var(--mu
 .d{min-height:66px;border-radius:14px;padding:5px 0 4px;display:flex;flex-direction:column;align-items:center;position:relative;background:color-mix(in srgb,var(--bg) 55%,var(--card));box-shadow:none}.d.o{visibility:hidden}
 .d .s{font-size:16px;font-weight:700;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%}.d .l{font-size:10px;line-height:13px;color:var(--mu)}
 .d.t .s{background:var(--ac);color:#fff;box-shadow:0 4px 10px color-mix(in srgb,var(--ac) 45%,transparent)}.d[class*=" c-"]{background:color-mix(in srgb,var(--c) 11%,var(--card))}.d.ot{background:color-mix(in srgb,var(--b) 11%,var(--card))}.d.ot2{background:color-mix(in srgb,var(--o) 12%,var(--card))}.d .l.f{color:var(--ac);font-weight:700}.chip2{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:6px 10px;border-radius:999px;background:color-mix(in srgb,var(--c) 12%,var(--card));margin:0 6px 6px 0}.chip2 i{width:6px;height:6px;border-radius:50%;background:var(--c)}.lg{display:flex;gap:14px;justify-content:center;font-size:11px;color:var(--mu);margin:-4px 0 12px}.lg i{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:5px}.d.sel{box-shadow:inset 0 0 0 2px var(--ac)}.d.hl .s{color:var(--red)}.d.t.hl .s{color:#fff}
-.dot{position:absolute;top:4px;right:6pxchầu;width:6px;height:6px;border-radius:50%;background:var(--c)}
+.dot{position:absolute;top:4px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--c)}
 .bd{margin-top:1px;line-height:14px;font-size:10px;font-weight:700;background:color-mix(in srgb,var(--b) 14%,var(--card));color:var(--bt);border-radius:8px;padding:0 5px}.bd.b2{background:color-mix(in srgb,var(--o) 14%,var(--card));color:var(--ot)}
 .c-off{--c:var(--red)}.c-lunar{--c:var(--yel)}.c-memo{--c:var(--blu)}.c-intl{--c:var(--pur)}
 .hol{display:flex;flex-wrap:wrap;align-items:center;gap:6px;border-left:6px solid var(--c)}.hol .lf{flex:1}.hol .n{font-weight:600}
@@ -41,16 +41,29 @@ nav button{flex:1;background:none;box-shadow:none;border-radius:0;color:var(--mu
 .chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}.chips button{white-space:nowrap;min-height:36px;border-radius:999px}.chips .on{background:var(--c,var(--ac));color:#fff}
 .row{display:flex;gap:8px;margin-bottom:8px}.sr{position:relative;flex:1}.sr svg{position:absolute;left:12px;top:11px;color:var(--mu)}.sr input{padding-left:40px}
 #sheet{position:fixed;inset:0;background:#0006;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:flex-end;justify-content:center;z-index:9}#sheet.show{display:flex}
-#sheet>div{background:var(--card);width:100%;max-width:480px;border-radius:28px 28px 0 0;padding:20px 16px calc(16px + env(safe-area-inset-bottom,0px));animation:up .28s cubic-bezier(.2,.9,.3,1.1)}
+#sheet>div{max-height:92vh;overflow-y:auto;background:var(--card);width:100%;max-width:480px;border-radius:28px 28px 0 0;padding:20px 16px calc(16px + env(safe-area-inset-bottom,0px));animation:up .28s cubic-bezier(.2,.9,.3,1.1)}
 #sheet>div::before{content:"";display:block;width:40px;height:5px;border-radius:3px;background:color-mix(in srgb,var(--mu) 40%,transparent);margin:-10px auto 14px}@keyframes up{from{transform:translateY(100%)}}
 .seg{display:flex;gap:4px;margin:12px 0;background:var(--bg);padding:4px;border-radius:16px}.seg button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;background:none;box-shadow:none}.seg .on{background:var(--card);box-shadow:0 2px 8px #1018281a;font-weight:700;color:var(--ac)}
 .step{display:flex;align-items:center;justify-content:center;gap:16px;margin:8px 0}.step button{width:56px;font-size:24px;border-radius:50%}.step b{font-size:32px;font-weight:800;min-width:96px;text-align:center}
-.q{display:flex;gap:8px}.q button{flex:1;border-radius:999px;background:var(--bg)}.pri{background:var(--ac);color:#fff}.full{width:100%;margin-top:12px}.del{background:none;box-shadow:none;color:var(--red);width:100%}
+.q{display:flex;gap:8px}.q button{flex:1;padding:0 8px;border-radius:999px;background:var(--bg)}.pri{background:var(--ac);color:#fff}.full{width:100%;margin-top:12px}.del{background:none;box-shadow:none;color:var(--red);width:100%}
 table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:6px 4px;text-align:right;border-bottom:1px solid var(--bd)}td:first-child,th:first-child{text-align:left}
 .chart{display:flex;align-items:flex-end;gap:6px;height:120px;margin:8px 0}.chart div{flex:1;background:var(--g);border-radius:8px 8px 3px 3px;min-height:3px;cursor:pointer}
 label.sw{display:flex;justify-content:space-between;align-items:center;margin:10px 0;gap:10px}label.sw input{width:auto}textarea{min-height:70px}.mu{color:var(--mu);font-size:12px}
 #toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:#111;color:#fff;padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.25s;z-index:20}#toast.on{opacity:1;transform:translate(-50%,0)}
 .an{animation:sl .2s ease-out}@keyframes sl{from{opacity:0;transform:translateX(var(--dx,0))}}
+.slip{--ln:color-mix(in srgb,var(--mu) 30%,transparent);background:var(--card);border-radius:18px 18px 0 0;box-shadow:0 6px 20px #1018281a;position:relative;margin-bottom:28px}
+.slip::after{content:"";position:absolute;left:0;right:0;top:100%;height:8px;background:conic-gradient(from -45deg at 50% 100%,var(--card) 90deg,transparent 0) 0 0/16px 8px}
+.sh{padding:18px 16px 14px;text-align:center;color:#fff;border-radius:18px 18px 0 0;background:linear-gradient(135deg,var(--pr),color-mix(in srgb,var(--pr) 55%,#000))}
+.sh .t1{font-size:13px;font-weight:700;letter-spacing:.22em;opacity:.9}.sh .t2{font-size:22px;font-weight:800;margin:2px 0 12px}
+.inf{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.inf div{background:#ffffff26;border-radius:12px;padding:6px 2px}.inf small{display:block;font-size:10px;opacity:.85}.inf b{font-size:15px}
+.sec{padding:14px 16px 4px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ac)}
+.ln{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:8px 16px;border-bottom:1px dashed var(--ln)}
+.ln .lf{flex:1;min-width:0}.ln small{display:block;font-size:11px;color:var(--mu);line-height:1.35}.ln b{font-weight:700;white-space:nowrap}.ln b.z{color:var(--mu);font-weight:400}
+.ed{font-size:10px;font-style:normal;background:color-mix(in srgb,var(--o) 16%,var(--card));color:var(--ot);padding:1px 6px;border-radius:8px;margin-left:4px}
+.ln.sm{margin-top:4px;border-bottom:0;border-top:2px solid var(--ln);font-weight:700;font-size:14px;align-items:center}.ln.in b{color:var(--gt)}.ln.de b{color:var(--red)}
+.net{margin:12px 12px 0;padding:14px 16px;border-radius:16px;display:flex;justify-content:space-between;align-items:center;gap:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--g) 24%,var(--card)),color-mix(in srgb,var(--g) 8%,var(--card)))}
+.net small{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--gt)}.net .fm{font-size:11px;color:var(--mu)}.net b{font-size:28px;font-weight:800;color:var(--gt);white-space:nowrap}
+.ft{text-align:center;font-size:11px;color:var(--mu);padding:10px 0 14px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body>
 <main id="m"></main>
@@ -60,7 +73,7 @@ label.sw{display:flex;justify-content:space-between;align-items:center;margin:10
 // ===== Lưu trữ (localStorage, có try/catch; fallback bộ nhớ tạm) =====
 var mem={};function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return mem[k]!==undefined?mem[k]:d}}
 function sv(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-var OT=ld('ot',{}),ST=Object.assign({f1:1.5,f2:2,lunar:true,ws:1,x3:3},ld('st',{}));
+var OT=ld('ot',{}),PY=ld('py',{}),ST=Object.assign({f1:1.5,f2:2,lunar:true,ws:1,x3:3,meal:650,mealEat:2,lodge:500,travel:500,att:500,std:26,div:26,bhBase:1000,rBhxh:10.5,rUnion:0.5},ld('st',{}));
 var INT=Math.floor,TZ=7,PI=Math.PI;
 
 // ===== Thuật toán âm lịch Việt Nam (Hồ Ngọc Đức), múi giờ UTC+7 =====
@@ -106,19 +119,19 @@ function mon(y,m){var h15=0,h2=0,p=y+'-'+(m<10?'0':'')+m+'-';for(var k in OT)if(
 
 var dir=0,sel='',CAN=['Giáp','Ất','Bính','Đinh','Mậu','Kỷ','Canh','Tân','Nhâm','Quý'],CHI=['Tý','Sửu','Dần','Mão','Thìn','Tỵ','Ngọ','Mùi','Thân','Dậu','Tuất','Hợi'];
 function svg(p,f){return '<svg viewBox="0 0 24 24" width="22" height="22" fill="'+(f?'currentColor':'none')+'" fill-opacity="'+(f?.22:0)+'" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'}
-var IC={cal:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',tm:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/>',ch:'<path d="M5 20v-7M12 20V5M19 20v-10"/>',gr:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',clk:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'};
-function money(n){return Math.round(n).toLocaleString('vi-VN')+' đ'}
+var IC={cal:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',tm:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/>',ch:'<path d="M5 20v-7M12 20V5M19 20v-10"/>',gr:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',clk:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',pay:'<rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9.5v.01M18 14.5v.01"/>'};
+function money(n){return fK(n/1000)}
 // Số công = số ngày Thứ 2 → Thứ 7 trong tháng (loại Chủ nhật); lương 1h = LCB / số công / 8; tiền OT = tổng giờ quy đổi × lương 1h
-function pay(y,m){var w=0,dim=new Date(y,m,0).getDate();for(var d=1;d<=dim;d++)if(new Date(y,m-1,d).getDay()!=0)w++;if(ST.autoW===false)w=26;var h=ST.lcb?ST.lcb/w/8:0;return{w:w,h:h,p:mon(y,m).tot*h}}
+function pay(y,m){var P=PY[ym(y,m)],w=(P&&P.std)||cw(y,m),h=lcbOf(y,m)*1000/(ST.div||26)/8;return{w:w,h:h,p:mon(y,m).tot*h}}
 function toast(t){var e=document.getElementById('toast');e.textContent=t;e.className='on';setTimeout(function(){e.className=''},1800)}
-function render(){var m=document.getElementById('m');m.innerHTML=[cal,cd,stats,sett][tab]();
-document.getElementById('nav').innerHTML=[['Lịch',IC.cal],['Đếm ngược',IC.tm],['Thống kê',IC.ch],['Cài đặt',IC.gr]].map(function(s,i){return '<button class="'+(i==tab?'on':'')+'" aria-label="'+s[0]+'" onclick="tab='+i+';render()">'+svg(s[1],i==tab)+s[0]+'</button>'}).join('');dir=0;bind()}
+function render(keep){var m=document.getElementById('m'),sc=m.scrollTop;m.innerHTML=[cal,cd,payroll,stats,sett][tab]();
+document.getElementById('nav').innerHTML=[['Lịch',IC.cal],['Đếm ngược',IC.tm],['Lương',IC.pay],['Thống kê',IC.ch],['Cài đặt',IC.gr]].map(function(s,i){return '<button class="'+(i==tab?'on':'')+'" aria-label="'+s[0]+'" onclick="tab='+i+';render(0)">'+svg(s[1],i==tab)+s[0]+'</button>'}).join('');dir=0;bind();m.scrollTop=keep?sc:0}
 
 function cal(){var s=mon(vy,vm),pp=pay(vy,vm),hm=holMap(vy);if(vm==1)Object.assign(hm,holMap(vy-1));var first=new Date(vy,vm-1,1).getDay(),off=(first-ST.ws+7)%7,dim=new Date(vy,vm,0).getDate(),td=key(T.getFullYear(),T.getMonth()+1,T.getDate()),L=s2l(15,vm,vy);
 var h='<div class="top"><div><h1>Tháng '+vm+', '+vy+'</h1><div class="mu">Âm lịch: tháng '+L[1]+' '+CAN[(L[2]+6)%10]+' '+CHI[(L[2]+8)%12]+'</div></div><div class="nv"><button class="ic" aria-label="Tháng trước" onclick="nav(-1)">‹</button><button class="pill" onclick="vy=T.getFullYear();vm=T.getMonth()+1;render()">Hôm nay</button><button class="ic" aria-label="Tháng sau" onclick="nav(1)">›</button></div></div>';
 h+='<div class="sum"><div class="k g m">'+svg(IC.clk)+'<b>'+fmt(s.h15+s.h2)+'</b><small>Tổng giờ OT</small></div><div class="k b">'+svg(IC.clk)+'<b>'+fmt(s.h15)+'</b><small>OT x'+ST.f1+'</small></div><div class="k o">'+svg(IC.clk)+'<b>'+fmt(s.h2)+'</b><small>OT x'+ST.f2+'</small></div></div>';
-h+='<div class="card pay"><div><div class="mu">Công trong tháng</div><b>'+pp.w+' công</b>'+(ST.lcb?'<div class="mu">Lương 1h: '+money(pp.h)+'</div>':'')+'</div><div style="text-align:right"><div class="mu">Lương OT</div><b class="gt">'+(ST.lcb?money(pp.p):'—')+'</b></div></div>';
-if(!ST.lcb)h+='<div class="mu" style="margin:-4px 4px 10px">Nhập lương cơ bản trong Cài đặt để tính tiền OT.</div>';
+h+='<div class="card pay"><div><div class="mu">Công trong tháng</div><b>'+pp.w+' công</b>'+(pp.h?'<div class="mu">Lương 1h: '+money(pp.h)+'</div>':'')+'</div><div style="text-align:right"><div class="mu">Lương OT</div><b class="gt">'+(pp.h?money(pp.p):'—')+'</b></div></div>';
+if(!pp.h)h+='<div class="mu" style="margin:-4px 4px 10px">Nhập lương cơ bản ở tab Cài đặt để tính tiền OT.</div>';
 h+='<div class="card an" style="--dx:'+dir*24+'px"><div class="grid" id="g">';
 var days=ST.ws==1?['T2','T3','T4','T5','T6','T7','CN']:['CN','T2','T3','T4','T5','T6','T7'];days.forEach(function(d){h+='<div class="dow'+(d=='CN'?' we':'')+'">'+d+'</div>'});
 for(var i=0;i<off;i++)h+='<div class="d o"></div>';
@@ -129,16 +142,17 @@ h+='</div></div><div class="lg"><span><i style="background:var(--red)"></i>Ngày
 var ml=[],pf=vy+'-'+(vm<10?'0':'')+vm+'-';Object.keys(hm).sort().forEach(function(k){if(k.indexOf(pf)==0)hm[k].forEach(function(x){ml.push('<span class="chip2 c-'+x.c+'"><i></i>'+x.d+'/'+x.m+' · '+x.n+'</span>')})});
 if(ml.length)h+='<div class="card"><div class="mu" style="margin-bottom:10px">Ngày lễ trong tháng</div>'+ml.join('')+'</div>';
 if(!s.tot)h+='<div class="card mu" style="text-align:center">Chưa có OT tháng này<br>Bấm vào một ngày để thêm.</div>';
+h+=attCard(vy,vm);
 return h}
 function nav(n){dir=n;vm+=n;if(vm>12){vm=1;vy++}if(vm<1){vm=12;vy--}render()}
 
 function suggest(k){var p=k.split('-').map(Number),w=new Date(p[0],p[1]-1,p[2]).getDay(),hm=holMap(p[0]);return(hm[k]&&hm[k].some(function(h){return h.c=='off'})||w==0)?'h2':'h15'}
 function openDay(k){sel=k;cur=k;var o=OT[k]||{};cur={k:k,h15:o.h15||0,h2:o.h2||0,note:o.note||''};seg=suggest(k);sheet()}
-function sheet(){var p=cur.k.split('-').map(Number),w=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'][new Date(p[0],p[1]-1,p[2]).getDay()],L=s2l(p[2],p[1],p[0]),hs=(holMap(p[0])[cur.k]||[]).map(function(h){return h.n}).join(', ');
+function sheet(){var p=cur.k.split('-').map(Number),dow=new Date(p[0],p[1]-1,p[2]).getDay(),w=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'][dow],L=s2l(p[2],p[1],p[0]),hs=(holMap(p[0])[cur.k]||[]).map(function(h){return h.n}).join(', '),qs=dow==0?[1,2,3,4,8]:[1,2,3,4];
 var x='<div><h3 style="margin:0">'+w+', '+p[2]+'/'+p[1]+'/'+p[0]+'</h3><div class="mu">Âm lịch: '+L[0]+'/'+L[1]+(L[3]?' (nhuận)':'')+(hs?' · 🎉 '+hs:'')+'</div>'
 +'<div class="seg"><button class="'+(seg=='h15'?'on':'')+'" onclick="seg=\'h15\';sheet()">OT x'+ST.f1+'<b>'+fmt(cur.h15)+'h</b></button><button class="'+(seg=='h2'?'on':'')+'" onclick="seg=\'h2\';sheet()">OT x'+ST.f2+'<b>'+fmt(cur.h2)+'h</b></button></div>'
 +'<div class="step"><button onclick="adj(-0.5)">−</button><b>'+fmt(cur[seg])+' h</b><button onclick="adj(0.5)">+</button></div>'
-+'<div class="q">'+[1,2,3,4].map(function(n){return '<button onclick="cur[seg]='+n+';sheet()">'+n+'h</button>'}).join('')+'</div>'
++'<div class="q">'+qs.map(function(n){return '<button onclick="cur[seg]='+n+';sheet()">'+n+'h</button>'}).join('')+'</div>'
 +'<textarea id="note" placeholder="Ghi chú" style="margin-top:10px">'+cur.note.replace(/</g,'&lt;')+'</textarea>'
 +'<button class="pri full" onclick="saveDay()">Lưu</button><button class="del" onclick="delDay()">Xóa</button></div>';
 var s=document.getElementById('sheet');s.innerHTML=x;s.className='show'}
@@ -161,16 +175,17 @@ return h}
 
 function stats(){var h='<div class="card"><div class="hd"><button onclick="vy--;render()">‹</button><h2>Năm '+vy+'</h2><button onclick="vy++;render()">›</button></div><div class="chart">',rows='',mx=1,a=[],t=[0,0,0,0];
 for(var m=1;m<=12;m++){var s=mon(vy,m);a.push(s);mx=Math.max(mx,s.tot);t[0]+=s.h15;t[1]+=s.h2;t[2]+=s.tot;t[3]+=pay(vy,m).p}
-a.forEach(function(s,i){h+='<div role="button" aria-label="Tháng '+(i+1)+'" onclick="vm='+(i+1)+';tab=0;render()" style="height:'+(s.tot/mx*100)+'%"></div>';rows+='<tr><td>T'+(i+1)+'</td><td>'+fmt(s.h15)+'</td><td>'+fmt(s.h2)+'</td><td><b>'+fmt(s.tot)+'</b></td><td>'+(ST.lcb?money(pay(vy,i+1).p):'—')+'</td></tr>'});
-h+='</div><table><tr><th>Tháng</th><th>x'+ST.f1+'</th><th>x'+ST.f2+'</th><th>Quy đổi</th><th>Tiền OT</th></tr>'+rows+'<tr><td><b>Cả năm</b></td><td>'+fmt(t[0])+'</td><td>'+fmt(t[1])+'</td><td><b>'+fmt(t[2])+'</b></td><td><b>'+(ST.lcb?money(t[3]):'—')+'</b></td></tr></table></div>';
+a.forEach(function(s,i){h+='<div role="button" aria-label="Tháng '+(i+1)+'" onclick="vm='+(i+1)+';tab=0;render()" style="height:'+(s.tot/mx*100)+'%"></div>';rows+='<tr><td>T'+(i+1)+'</td><td>'+fmt(s.h15)+'</td><td>'+fmt(s.h2)+'</td><td><b>'+fmt(s.tot)+'</b></td><td>'+(pay(vy,i+1).p?money(pay(vy,i+1).p):'—')+'</td></tr>'});
+h+='</div><table><tr><th>Tháng</th><th>x'+ST.f1+'</th><th>x'+ST.f2+'</th><th>Quy đổi</th><th>Tiền OT</th></tr>'+rows+'<tr><td><b>Cả năm</b></td><td>'+fmt(t[0])+'</td><td>'+fmt(t[1])+'</td><td><b>'+fmt(t[2])+'</b></td><td><b>'+(t[3]?money(t[3]):'—')+'</b></td></tr></table></div>';
 h+='<div class="card"><div class="row"><button style="flex:1" onclick="csv()">Xuất CSV</button><button style="flex:1" onclick="bk()">Sao lưu JSON</button><button style="flex:1" onclick="rs()">Khôi phục</button></div><textarea id="io" placeholder="CSV / JSON hiển thị ở đây — sao chép để lưu; dán JSON rồi bấm Khôi phục"></textarea><button onclick="var e=document.getElementById(\'io\');e.select();try{document.execCommand(\'copy\')}catch(x){}" style="margin-top:8px;width:100%">Sao chép</button></div>';return h}
 function csv(){var r=['Ngay,Gio x'+ST.f1+',Gio x'+ST.f2+',Quy doi,Ghi chu'];Object.keys(OT).sort().forEach(function(k){var o=OT[k];r.push([k,o.h15||0,o.h2||0,(o.h15||0)*ST.f1+(o.h2||0)*ST.f2,'"'+(o.note||'').replace(/"/g,'""')+'"'].join(','))});document.getElementById('io').value=r.join('\n')}
-function bk(){document.getElementById('io').value=JSON.stringify({ot:OT,st:ST})}
-function rs(){try{var d=JSON.parse(document.getElementById('io').value);if(d.ot){OT=d.ot;sv('ot',OT)}if(d.st){ST=Object.assign(ST,d.st);sv('st',ST)}render()}catch(e){alert('JSON không hợp lệ')}}
+function bk(){document.getElementById('io').value=JSON.stringify({ot:OT,st:ST,py:PY})}
+function rs(){try{var d=JSON.parse(document.getElementById('io').value);if(d.ot){OT=d.ot;sv('ot',OT)}if(d.st){ST=Object.assign(ST,d.st);sv('st',ST)}if(d.py){PY=d.py;sv('py',PY)}render()}catch(e){alert('JSON không hợp lệ')}}
 
-function sett(){return '<div class="card"><label class="sw">Lương cơ bản (đ/tháng)<input id="lcb" type="number" inputmode="numeric" step="100000" value="'+(ST.lcb||'')+'" style="width:150px"></label><label class="sw">Tự tính số công theo tháng<input id="aw" type="checkbox"'+(ST.autoW!==false?' checked':'')+'></label><div class="mu">'+(ST.autoW!==false?'Bật: số công = số ngày Thứ 2–Thứ 7 của từng tháng.':'Tắt: cố định 26 công mỗi tháng.')+' Lương 1h = LCB ÷ số công ÷ 8.</div><label class="sw">Hệ số OT thường<input id="f1" type="number" step="0.1" value="'+ST.f1+'" style="width:90px"></label><label class="sw">Hệ số OT ngày nghỉ/lễ<input id="f2" type="number" step="0.1" value="'+ST.f2+'" style="width:90px"></label><div class="mu">Đổi thành 3 nếu công ty tính lễ x3. Gợi ý khi nhập: ngày lễ nghỉ và Chủ nhật → hệ số thứ hai, ngày thường → hệ số thứ nhất.</div>'
+function sett(){return '<div class="card"><div class="top" style="margin-bottom:8px"><div><div style="font-weight:700">Thông số lương tháng '+vm+'/'+vy+'</div><div class="mu">Lương cơ bản, thưởng, phụ cấp con nhỏ theo từng tháng.</div></div><div class="nv"><button class="ic" aria-label="Tháng trước" onclick="nav(-1)">‹</button><button class="ic" aria-label="Tháng sau" onclick="nav(1)">›</button></div></div><button class="pri full" style="margin-top:4px" onclick="openInput()">✎ Nhập thông số</button></div>'
++'<div class="card"><div class="mu">Lương 1h = LCB ÷ công chia OT ÷ 8 (cài đặt ở khung Lương &amp; phụ cấp bên dưới).</div><label class="sw">Hệ số OT thường<input id="f1" type="number" step="0.1" value="'+ST.f1+'" style="width:90px"></label><label class="sw">Hệ số OT ngày nghỉ/lễ<input id="f2" type="number" step="0.1" value="'+ST.f2+'" style="width:90px"></label><div class="mu">Đổi thành 3 nếu công ty tính lễ x3. Gợi ý khi nhập: ngày lễ nghỉ và Chủ nhật → hệ số thứ hai, ngày thường → hệ số thứ nhất.</div>'
 +'<label class="sw">Hiển thị âm lịch<input id="lu" type="checkbox"'+(ST.lunar?' checked':'')+'></label><label class="sw">Tuần bắt đầu từ<select id="ws" style="width:110px"><option value="1"'+(ST.ws==1?' selected':'')+'>Thứ 2</option><option value="0"'+(ST.ws==0?' selected':'')+'>Chủ nhật</option></select></label>'
-+'<label class="sw">Chủ đề<select id="th" style="width:110px"><option value="">Theo hệ thống</option><option value="light"'+(ST.th=='light'?' selected':'')+'>Sáng</option><option value="dark"'+(ST.th=='dark'?' selected':'')+'>Tối</option></select></label></div>'}
++'<label class="sw">Chủ đề<select id="th" style="width:110px"><option value="">Theo hệ thống</option><option value="light"'+(ST.th=='light'?' selected':'')+'>Sáng</option><option value="dark"'+(ST.th=='dark'?' selected':'')+'>Tối</option></select></label></div>'+settPay()}
 
 function bind(){var e;if(e=document.getElementById('q'))e.oninput=function(){q=this.value;var p=this.selectionStart;render();var n=document.getElementById('q');n.focus();n.setSelectionRange(p,p)};
 if(e=document.getElementById('rg'))e.onchange=function(){rng=+this.value;render()};
@@ -178,8 +193,81 @@ var m={lcb:function(v){ST.lcb=+v||0},f1:function(v){ST.f1=+v||1.5},f2:function(v
 for(var id in m)(function(id){var x=document.getElementById(id);if(x)x.onchange=function(){m[id](this.value);sv('st',ST)}})(id);
 if(e=document.getElementById('lu'))e.onchange=function(){ST.lunar=this.checked;sv('st',ST)};
 if(e=document.getElementById('aw'))e.onchange=function(){ST.autoW=this.checked;sv('st',ST);render()};
+PF.forEach(function(p){var x=document.getElementById('s_'+p[0]);if(x)x.onchange=function(){var v=num(this.value);if(v==null||((p[0]=='std'||p[0]=='div')&&v<=0))v=PD[p[0]];ST[p[0]]=v;sv('st',ST);render(1)}});
+if(e=document.getElementById('std'))e.onchange=function(){var v=num(this.value),P=pyGet(vy,vm);if(v&&v>0)P.std=v;else delete P.std;sv('py',PY);render(1)};
+if(e=document.getElementById('lun'))e.onchange=function(){pyGet(vy,vm).lunch=this.checked;sv('py',PY);render(1)};
 var g=document.getElementById('g');if(g){var sx=0;g.ontouchstart=function(ev){sx=ev.touches[0].clientX};g.ontouchend=function(ev){var dx=ev.changedTouches[0].clientX-sx;if(Math.abs(dx)>60)nav(dx<0?1:-1)}}}
 function theme(){if(ST.th)document.documentElement.setAttribute('data-theme',ST.th);else document.documentElement.removeAttribute('data-theme')}
+// ===== LƯƠNG / PHIẾU LƯƠNG (đơn vị nhập & tính: nghìn đồng; 500 = 500.000đ) =====
+var PD={meal:650,mealEat:2,lodge:500,travel:500,att:500,std:26,div:26,bhBase:1000,rBhxh:10.5,rUnion:0.5};
+var PF=[['meal','Phụ cấp ăn ca (tính cho công chuẩn)'],['mealEat','Ăn ca nếu ăn tại công ty (mỗi công)'],['lodge','Phụ cấp nhà trọ'],['travel','Phụ cấp đi lại'],['att','Chuyên cần'],['std','Công chuẩn hợp đồng'],['div','Chia lương OT cho (công)'],['bhBase','Cộng thêm vào mức đóng BH'],['rBhxh','BHXH (%)'],['rUnion','Công đoàn (%)']];
+function num(v){v=(''+v).replace(/\s/g,'').replace(',','.');if(v==='')return null;var x=+v;return isFinite(x)?x:null}
+function ym(y,m){return y+'-'+(m<10?'0':'')+m}
+function pyGet(y,m){var k=ym(y,m);return PY[k]||(PY[k]={})}
+function cw(y,m){var w=0,dim=new Date(y,m,0).getDate();for(var d=1;d<=dim;d++)if(new Date(y,m-1,d).getDay()!=0)w++;return w}
+function lcbOf(y,m){for(var i=0;i<60;i++){var P=PY[ym(y,m)];if(P&&P.lcb!=null)return P.lcb;m--;if(m<1){m=12;y--}}return (ST.lcb||0)/1000}
+function fN(k){return Math.round(k*1000).toLocaleString('vi-VN')}
+function fK(k){return fN(k)+' đ'}
+var OVF=[['meal','Phụ cấp ăn ca'],['lodge','Phụ cấp nhà trọ'],['travel','Phụ cấp đi lại'],['att','Chuyên cần'],['perf','Thưởng hiệu suất'],['ot','Tiền tăng ca'],['bhxh','BHXH'],['union','Công đoàn']];
+function slip(y,m){
+var P=PY[ym(y,m)]||{},O=P.ovr||{},w=pay(y,m).w,lcb=lcbOf(y,m),days=P.days!=null?P.days:w,eat=!!P.lunch,o=mon(y,m),
+div=ST.div||26,std=ST.std||26,hr=lcb/div/8,base=lcb+ST.bhBase,r=function(x){return Math.round(x*1000)/1000},
+A={meal:eat?ST.mealEat*days:ST.meal/std*days,lodge:ST.lodge/std*w,travel:ST.travel/std*w,att:ST.att,perf:o.h2*ST.f2*hr,ot:(o.h15*ST.f1+o.h2*ST.f2)*hr,bhxh:base*ST.rBhxh/100,union:base*ST.rUnion/100},V={},ov={};
+for(var k in A){A[k]=r(A[k]);if(O[k]!=null){V[k]=O[k];ov[k]=1}else V[k]=A[k]}
+var bonus=P.bonus||0,qual=P.qual||0,senior=P.senior||0,child=P.child||0;
+var gross=r(lcb+bonus+qual+senior+child+V.meal+V.lodge+V.travel+V.att+V.perf+V.ot),ded=r(V.bhxh+V.union);
+return{P:P,w:w,lcb:lcb,days:days,eat:eat,o:o,hr:hr,div:div,std:std,base:base,a:A,v:V,ov:ov,bonus:bonus,qual:qual,senior:senior,child:child,gross:gross,ded:ded,net:r(gross-ded),set:P.days!=null}}
+function ln(l,f,v,ov){return '<div class="ln"><div class="lf"><div>'+l+(ov?' <i class="ed">sửa tay</i>':'')+'</div>'+(f?'<small>'+f+'</small>':'')+'</div><b'+(v?'':' class="z"')+'>'+(v?fK(v):'–')+'</b></div>'}
+function sumr(l,v,c){return '<div class="ln sm '+(c||'')+'"><div class="lf"><div>'+l+'</div></div><b>'+fK(v)+'</b></div>'}
+function attCard(y,m){var s=slip(y,m),P=s.P,aw=cw(y,m);
+var h='<div class="card"><div class="mu" style="margin-bottom:2px">Chấm công tháng '+m+'/'+y+'</div><div class="step"><button aria-label="Giảm nửa ngày" onclick="setDays(-0.5)">−</button><b>'+fmt(s.days)+'</b><button aria-label="Tăng nửa ngày" onclick="setDays(0.5)">+</button></div>'
++'<div class="mu" style="text-align:center;margin-bottom:8px">ngày đi làm / '+fmt(s.w)+' công chuẩn'+(s.set?'':' · chưa nhập, tạm tính đủ công')+'</div>'
++'<div class="q"><button onclick="setDays(null)">Đủ công ('+fmt(s.w)+')</button>'+[24,25,26].map(function(n){return '<button onclick="setDays('+n+',1)">'+n+'</button>'}).join('')+'</div>'
++'<label class="sw">Công chuẩn tháng (để trống = tự tính T2–T7: '+aw+')<input id="std" type="text" inputmode="decimal" value="'+(P.std||'')+'" placeholder="'+aw+'" style="width:80px;text-align:right"></label>'
++'<label class="sw">Ăn trưa tại công ty<input id="lun" type="checkbox"'+(s.eat?' checked':'')+'></label>';
+if(s.lcb)h+='<button class="full" style="display:flex;justify-content:space-between;align-items:center;margin-top:4px" onclick="tab=2;render(1)"><span class="mu">Thực lĩnh tạm tính · xem phiếu lương ›</span><b class="gt">'+fK(s.net)+'</b></button>';
+return h+'</div>'}
+function setDays(n,abs){var P=pyGet(vy,vm);if(n===null)delete P.days;else{var d=abs?n:(P.days!=null?P.days:pay(vy,vm).w)+n;P.days=Math.max(0,Math.min(31,d))}sv('py',PY);render(1)}
+function payroll(){var s=slip(vy,vm),v=s.v,o=s.o,A=s.a,ov=s.ov;
+var h='<div class="top"><div><h1>Phiếu lương</h1><div class="mu">Tháng '+vm+'/'+vy+'</div></div><div class="nv"><button class="ic" aria-label="Tháng trước" onclick="nav(-1)">‹</button><button class="pill" onclick="vy=T.getFullYear();vm=T.getMonth()+1;render()">Hôm nay</button><button class="ic" aria-label="Tháng sau" onclick="nav(1)">›</button></div></div>';
+h+='<div class="row"><button style="flex:1" onclick="openOvr()">Sửa tổng</button></div>';
+if(!s.lcb)h+='<div class="card mu" style="text-align:center">Chưa có lương cơ bản. Vào mục <b>Cài đặt</b> → “Nhập thông số” để bắt đầu.</div>';
+h+='<div class="slip an" style="--dx:'+dir*24+'px"><div class="sh"><div class="t1">PHIẾU LƯƠNG</div><div class="t2">Tháng '+vm+' / '+vy+'</div><div class="inf"><div><small>Công chuẩn</small><b>'+fmt(s.w)+'</b></div><div><small>Đi làm</small><b>'+fmt(s.days)+'</b></div><div><small>Ăn trưa</small><b>'+(s.eat?'Có':'Không')+'</b></div><div><small>Giờ OT</small><b>'+fmt(o.h15+o.h2)+'</b></div></div></div>'
++'<div class="sec">I. Lương &amp; thưởng</div>'
++ln('Lương cơ bản','',s.lcb)+ln('Thưởng','',s.bonus)+ln('Thưởng chất lượng','',s.qual)+ln('Thưởng thâm niên','',s.senior)
++ln('Thưởng hiệu suất','OT x'+fmt(ST.f2)+': '+fmt(o.h2)+'h × '+fmt(ST.f2)+' × '+fN(s.hr)+'/giờ',v.perf,ov.perf)
++'<div class="sec">II. Phụ cấp</div>'
++ln('Phụ cấp ăn ca',s.eat?'Ăn tại CT: '+fN(ST.mealEat)+' × '+fmt(s.days)+' công':fN(ST.meal)+' ÷ '+s.std+' × '+fmt(s.days)+' công',v.meal,ov.meal)
++ln('Phụ cấp nhà trọ',fN(ST.lodge)+' ÷ '+s.std+' × '+fmt(s.w)+' công',v.lodge,ov.lodge)
++ln('Phụ cấp đi lại',fN(ST.travel)+' ÷ '+s.std+' × '+fmt(s.w)+' công',v.travel,ov.travel)
++ln('Phụ cấp con nhỏ','',s.child)+ln('Chuyên cần','',v.att,ov.att)
++'<div class="sec">III. Tăng ca</div>'
++ln('Tiền tăng ca','('+fmt(o.h15)+'h × '+fmt(ST.f1)+' + '+fmt(o.h2)+'h × '+fmt(ST.f2)+') × '+fN(s.lcb)+' ÷ '+s.div+' ÷ 8',v.ot,ov.ot)
++sumr('TỔNG THU NHẬP',s.gross,'in')
++'<div class="sec">IV. Khoản trừ</div>'
++ln('BHXH ('+fmt(ST.rBhxh)+'%)','('+fN(s.lcb)+' + '+fN(ST.bhBase)+') × '+fmt(ST.rBhxh)+'%',v.bhxh,ov.bhxh)
++ln('Công đoàn ('+fmt(ST.rUnion)+'%)','('+fN(s.lcb)+' + '+fN(ST.bhBase)+') × '+fmt(ST.rUnion)+'%',v.union,ov.union)
++sumr('TỔNG KHOẢN TRỪ',s.ded,'de')
++'<div class="net"><div><small>THỰC LĨNH</small><div class="fm">Thu nhập − Khoản trừ</div></div><b>'+fK(s.net)+'</b></div>'
++'<div class="ft">Đơn vị: đồng</div></div>';
+return h}
+function showSheet(x){var s=document.getElementById('sheet');s.innerHTML='<div>'+x+'</div>';s.className='show'}
+function fld(id,l,val,ph){return '<label class="sw">'+l+'<input id="'+id+'" type="text" inputmode="decimal" value="'+(val==null?'':val)+'" placeholder="'+(ph==null?'':ph)+'" style="width:120px;text-align:right"></label>'}
+var IF=[['lcb','Lương cơ bản'],['bonus','Thưởng'],['qual','Thưởng chất lượng'],['senior','Thưởng thâm niên'],['child','Phụ cấp con nhỏ']];
+function openInput(){var P=PY[ym(vy,vm)]||{},inh=lcbOf(vy,vm),x='<h3 style="margin:0">Thông số tháng '+vm+'/'+vy+'</h3><div class="mu" style="margin-bottom:6px">Nhập theo nghìn đồng: 500 = 500.000 đ. Các khoản còn lại (ăn ca, nhà trọ, BH…) chỉnh ở Cài đặt.</div>';
+IF.forEach(function(f){x+=fld('i_'+f[0],f[1],P[f[0]],f[0]=='lcb'?(inh||'vd 8000'):'0')});
+x+='<div class="mu">Lương cơ bản để trống sẽ lấy theo tháng gần nhất đã nhập.</div><button class="pri full" onclick="saveInput()">Lưu</button><div class="q" style="margin-top:8px"><button onclick="copyPrev()">Chép từ tháng trước</button><button onclick="closeS()">Đóng</button></div>';showSheet(x)}
+function saveInput(){var P=pyGet(vy,vm);IF.forEach(function(f){var v=num(document.getElementById('i_'+f[0]).value);if(v==null)delete P[f[0]];else P[f[0]]=v});sv('py',PY);closeS();render(1);toast('Đã lưu')}
+function copyPrev(){var y=vy,m=vm-1;if(m<1){m=12;y--}var p=PY[ym(y,m)];if(!p){toast('Tháng trước chưa có dữ liệu');return}IF.forEach(function(f){var e=document.getElementById('i_'+f[0]);if(e&&p[f[0]]!=null)e.value=p[f[0]]});toast('Đã chép, bấm Lưu')}
+function openOvr(){var s=slip(vy,vm),O=s.P.ovr||{},x='<h3 style="margin:0">Sửa tổng tháng '+vm+'/'+vy+'</h3><div class="mu" style="margin-bottom:6px">Nhập tay để thay giá trị tự tính (nghìn đồng). Để trống = tự động; số mờ là giá trị tự tính.</div>';
+OVF.forEach(function(f){x+=fld('o_'+f[0],f[1],O[f[0]],Math.round(s.a[f[0]]*100)/100)});
+x+='<button class="pri full" onclick="saveOvr()">Lưu</button><div class="q" style="margin-top:8px"><button onclick="resetOvr()">Về tự động</button><button onclick="closeS()">Đóng</button></div>';showSheet(x)}
+function saveOvr(){var P=pyGet(vy,vm),O={},n=0;OVF.forEach(function(f){var v=num(document.getElementById('o_'+f[0]).value);if(v!=null){O[f[0]]=v;n++}});if(n)P.ovr=O;else delete P.ovr;sv('py',PY);closeS();render(1);toast('Đã lưu')}
+function resetOvr(){delete pyGet(vy,vm).ovr;sv('py',PY);render(1);toast('Đã về tự động')}
+function settPay(){var x='<div class="card"><div style="font-weight:700;margin-bottom:2px">Lương &amp; phụ cấp (dùng chung các tháng)</div><div class="mu">Nhập theo nghìn đồng: 650 = 650.000 đ.</div>';
+PF.forEach(function(p){x+=fld('s_'+p[0],p[1],ST[p[0]])});
+return x+'</div>'}
+
 document.getElementById('sheet').onclick=function(e){if(e.target==this)closeS()};
 theme();render();
 if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
